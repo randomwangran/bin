@@ -1,0 +1,36 @@
+#!/bin/bash
+
+usage() {
+    exec 1>&2
+    while [ "$#" -ge 1 ]; do echo "$1"; shift; done
+    cat<<USAGE
+
+Usage: ${0##*/} [OPTION]
+options:
+  -help
+
+* 1. create a repository named ~myProject~ on GitHub
+* 2. execute ~ranCloneTemplate myProject~
+
+USAGE
+    exit 1
+}
+
+# report usage
+[ "$1" = "-h" -o "$1" = "-help" ] && usage
+
+
+git clone git@github.com:randomwangran/projectTemplate.git
+git clone git@github.com:randomwangran/$1.git
+
+cd ./projectTemplate &&
+
+rm -rf .git
+
+cd ..
+
+mv projectTemplate $1.bak
+
+cp -rf $1.bak/* $1
+cp $1.bak/.gitignore $1
+rm -rf $1.bak
