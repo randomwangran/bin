@@ -11,7 +11,9 @@ options:
 
 * If single file is large ~TB, use this script
 
-* just followed by the folder name
+* Followed by the folder name
+
+* if "Tar return = 0" is not output, you know the tar command failed.
 
 
 USAGE
@@ -26,4 +28,3 @@ lfs setstripe -c -1 $1.tar.gz;
 tar cf - $1 | pigz -9 -p 24 > $1.tar.gz;
 echo "Tar return = ${PIPESTATUS[0]}"
 
-## if "Tar return = 0" is not output, you know the tar command failed.
