@@ -1,0 +1,23 @@
+#!/usr/bin/perl
+## Name:  generating bash script
+## Input: fileName
+## Output: perl script with fileName
+## best usage: open emacs with dired mode
+##             mark folders you want to tar
+##             boommmms
+## emacs so cool!
+
+# use strict;
+# use warnings;
+
+$fileNameTesting = @ARGV[0];
+
+    $file = "tar_$fileNameTesting.sh";
+    print "file: $file\n";
+
+    open $fh,'>', $file or die "Can't open the output file: $!";
+    print $fh "#!/bin/bash \n";
+    print $fh "lfs setstripe -c -1 $fileNameTesting.tar.gz; \n";
+    print $fh "tar cf - $fileNameTesting | pigz -9 -p 24 > $fileNameTesting.tar.gz ; \n";
+    print $fh q{echo "Tar return = ${PIPESTATUS[0]}"};
+    close $fh;
