@@ -1,0 +1,18 @@
+#!/usr/bin/perl
+## Name  : generates shell scripts to untar *.tar.gz
+## Input : Filename
+## Output: Folder
+## Note  : This script should be used from the script
+##         _batchUntarPwd_ instead of directly using this script.
+# use strict;
+# use warnings;
+
+$fileNameTesting = @ARGV[0];
+
+$file = "untar_$fileNameTesting.sh";
+print "file: $file\n";
+open $fh,'>', $file or die "Can't open the output file: $!";
+print $fh "#!/bin/bash \n";
+print $fh "tar -I pigz -xvf ./$fileNameTesting.tar.gz -C . \n";
+close $fh;
+

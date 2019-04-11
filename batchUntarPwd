@@ -1,0 +1,17 @@
+#!/bin/bash
+
+##  Untar all _*.tar.gz_ in the current folder using sbatch
+##  Dependence: ranUntar
+##  Usually execute from M-x shell
+
+test=$(find . -maxdepth 1 -type f -regextype sed -regex '.*' -not -path '*/\.*' | cut -c 3-)
+
+a=($(echo "$test" | sed -e "s/\.tar\.gz//"  ))
+
+for ((i=0; i<${#a[@]}; i++))
+
+do
+    ranUntar ${a[i]}
+    sbatch --job-name=untar_${a[i]} --ntasks=1 --mem=10G --nodes=1 --time=40:00:00 --output=untar_${a[i]}_%N_%J.log ./untar_${a[i]}.sh
+done
+       
