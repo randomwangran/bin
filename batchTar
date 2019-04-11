@@ -6,7 +6,8 @@
 ##             mark folders you want to tar
 ##             boommmms
 ## emacs so cool!
-
+## Useful info: "Tar return = 0" is not output
+##               you know the tar command failed.
 # use strict;
 # use warnings;
 
