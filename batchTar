@@ -8,6 +8,10 @@
 ## emacs so cool!
 ## Useful info: "Tar return = 0" is not output
 ##               you know the tar command failed.
+## Comment: Only use this when archive file otherwise
+##          it's way tooooooooooooooooooooooo slow.
+##          For regular tar, check Info manual under
+##                     ____tar____ section
 # use strict;
 # use warnings;
 
